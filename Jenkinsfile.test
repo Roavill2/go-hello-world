@@ -1,4 +1,7 @@
 pipeline {
+    agent {
+        label 'master'
+    }
     environment {
         image = 'roavill2/go-hello-world:s390x-latest'
     }
