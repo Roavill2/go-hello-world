@@ -1,0 +1,25 @@
+pipeline {
+    environment {
+        image = 'roavill2/go-hello-world:s390x-latest'
+    }
+     stages {
+        stage('Pull Source') {
+            steps {
+                sh 'rm -rf go-hello-world'
+                sh 'git clone https://github.com/Roavill2/go-hello-world.git'
+            }
+        }
+        stage('Build image') {
+            steps {
+                dir('go-hello-world') {
+                    sh 'sudo -n docker build . -t go-hello-world'
+                }
+            }
+        }
+        stage('Tagging image') {
+            steps {
+                sh 'sudo -n docker tag go-hello-world $image'
+            }
+        }
+    }
+}
