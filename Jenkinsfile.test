@@ -8,6 +8,7 @@ pipeline {
      stages {
         stage('Pull Source') {
             steps {
+                sh 'whoami'
                 sh 'rm -rf go-hello-world'
                 sh 'git clone https://github.com/Roavill2/go-hello-world.git'
             }
